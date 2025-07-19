@@ -4,119 +4,59 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import {
-  BarChart3,
+  LayoutDashboard,
   Users,
   UserPlus,
-  Briefcase,
-  Target,
-  Calendar,
+  BarChart3,
   Settings,
-  Home,
-  TrendingUp,
+  Target,
+  Zap
 } from 'lucide-react'
 
-const navigationItems = [
-  {
-    name: 'Dashboard',
-    href: '/',
-    icon: Home,
-  },
-  {
-    name: 'Leads',
-    href: '/leads',
-    icon: UserPlus,
-  },
-  {
-    name: 'Clientes',
-    href: '/customers',
-    icon: Users,
-  },
-  {
-    name: 'Negócios',
-    href: '/deals',
-    icon: Briefcase,
-  },
-  {
-    name: 'Atividades',
-    href: '/activities',
-    icon: Calendar,
-  },
-  {
-    name: 'Relatórios',
-    href: '/reports',
-    icon: BarChart3,
-  },
-  {
-    name: 'Automação',
-    href: '/automation',
-    icon: Target,
-  },
-  {
-    name: 'Análises',
-    href: '/analytics',
-    icon: TrendingUp,
-  },
-  {
-    name: 'Configurações',
-    href: '/settings',
-    icon: Settings,
-  },
+const navigation = [
+  { name: 'Dashboard', href: '/', icon: LayoutDashboard },
+  { name: 'Leads', href: '/leads', icon: UserPlus },
+  { name: 'Clientes', href: '/customers', icon: Users },
+  { name: 'Pipeline', href: '/deals', icon: Target },
+  { name: 'Automação', href: '/automation', icon: Zap },
+  { name: 'Analytics', href: '/analytics', icon: BarChart3 },
+  { name: 'Configurações', href: '/settings', icon: Settings },
 ]
 
 export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <div className="flex h-full w-64 flex-col bg-slate-900 text-white">
-      {/* Logo */}
-      <div className="flex h-16 items-center px-6">
-        <div className="flex items-center space-x-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
-            <Target className="h-5 w-5" />
-          </div>
-          <span className="text-xl font-bold">AdvancedCRM</span>
-        </div>
+    <div className="w-64 bg-white border-r border-gray-200 pt-5 pb-4 overflow-y-auto">
+      <div className="flex items-center flex-shrink-0 px-4">
+        <h1 className="text-xl font-bold text-gray-900">AdvancedCRM</h1>
       </div>
-
-      {/* Navigation */}
-      <nav className="flex-1 space-y-1 px-3 py-6">
-        {navigationItems.map((item) => {
+      <nav className="mt-5 flex-1 px-2 space-y-1">
+        {navigation.map((item) => {
           const isActive = pathname === item.href
           return (
             <Link
               key={item.name}
               href={item.href}
               className={cn(
-                'group flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
                 isActive
-                  ? 'bg-slate-800 text-white'
-                  : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                  ? 'bg-gray-100 text-gray-900'
+                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
               )}
             >
               <item.icon
                 className={cn(
-                  'mr-3 h-5 w-5 flex-shrink-0',
-                  isActive ? 'text-white' : 'text-slate-400 group-hover:text-white'
+                  'mr-3 flex-shrink-0 h-6 w-6',
+                  isActive ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500'
                 )}
+                aria-hidden="true"
               />
               {item.name}
             </Link>
           )
         })}
       </nav>
-
-      {/* User info */}
-      <div className="border-t border-slate-800 p-4">
-        <div className="flex items-center space-x-3">
-          <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center">
-            <span className="text-sm font-medium">AD</span>
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium truncate">Admin User</p>
-            <p className="text-xs text-slate-400 truncate">admin@company.com</p>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }

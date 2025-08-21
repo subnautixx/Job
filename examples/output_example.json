@@ -1,0 +1,19 @@
+{
+	"analysis_id": 1,
+	"analysis": {
+		"face_shape": "oval",
+		"skin_tone": "medium",
+		"apparent_age": "20-30",
+		"expression": "smiling",
+		"eye_color": "brown",
+		"hair_texture": "wavy"
+	},
+	"results": [
+		{
+			"style": "modern",
+			"prompt": "For a person with oval face shape, medium skin tone, aged 20-30, wearing modern outfit. modern fashion photography, trendy silhouettes, sleek minimalism. High detail, realistic lighting, studio shot.",
+			"image_base64": "...",
+			"image_path": "outputs/look_1_modern_1710000000.png"
+		}
+	]
+}
